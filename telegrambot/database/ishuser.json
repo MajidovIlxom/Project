@@ -1,0 +1,58 @@
+[
+  {
+    "userId": 5343557348,
+    "firstName": null,
+    "yosh": null,
+    "texnologiya": null,
+    "aloqa": null,
+    "hudud": null,
+    "narx": null,
+    "kasb": null,
+    "murojaat": null,
+    "maqsad": null,
+    "telegramUsername": null,
+    "status": null
+  },
+  {
+    "userId": 1813894622,
+    "firstName": "Ilxom Majidov",
+    "yosh": "24",
+    "texnologiya": "C, Css HTML, React",
+    "aloqa": "00000000",
+    "hudud": "Toshkent",
+    "narx": "💲3000",
+    "kasb": "Dasturchi",
+    "murojaat": "09:00-18:00",
+    "maqsad": "Ishlash",
+    "telegramUsername": "ilxom_358_No1",
+    "status": "waiting"
+  },
+  {
+    "userId": 784562004,
+    "firstName": "Omadbek",
+    "yosh": "24",
+    "texnologiya": "Nestjs",
+    "aloqa": "+998999002559",
+    "hudud": "Andijon",
+    "narx": "500+",
+    "kasb": "Najot talim",
+    "murojaat": "9:00",
+    "maqsad": "Tekshirish",
+    "telegramUsername": "nasirullayev_omadbek",
+    "status": "waiting"
+  },
+  {
+    "userId": 752497886,
+    "firstName": "Arslonboy Isorov",
+    "yosh": "23",
+    "texnologiya": "Java, Spring boot, PostgreSql, Linux",
+    "aloqa": "+998900347760",
+    "hudud": "Toshkent shahar, Samarqand",
+    "narx": "500$",
+    "kasb": "Ishsiz",
+    "murojaat": "9:00 - 18:00",
+    "maqsad": "Yaxshi jamoada o'sish",
+    "telegramUsername": "Isorov",
+    "status": "waiting"
+  }
+]
