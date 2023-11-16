@@ -19,6 +19,7 @@ import { Region } from './region/Models/region.models';
 import { MailModule } from './mail/mail.module';
 import { AdminModule } from './admin/admin.module';
 import { FilesModule } from './files/files.module';
+import { SmsModule } from './sms/sms.module';
 
 
 @Module({
@@ -53,6 +54,7 @@ import { FilesModule } from './files/files.module';
     MailModule,
     AdminModule,
     FilesModule,
+    SmsModule,
 
   ],
 })

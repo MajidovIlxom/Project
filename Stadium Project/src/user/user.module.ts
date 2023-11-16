@@ -5,12 +5,14 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './Models/user.models';
 import { JwtModule } from '@nestjs/jwt';
 import { MailModule } from 'src/mail/mail.module';
+import { SmsModule } from '../sms/sms.module';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([User]),
     JwtModule.register({}),
-    MailModule
+    MailModule,
+    SmsModule
   ],
   controllers: [UserController],
   providers: [UserService],

@@ -11,6 +11,7 @@ import { MailService } from 'src/mail/mail.service';
 import { LogenUserDto } from "./dto/login-user.dto"
 import { FindUserDto } from './dto/find.user.dto';
 import { Op } from 'sequelize';
+import { SmsService } from '../sms/sms.service';
 
 @Injectable()
 export class UserService {
@@ -20,6 +21,7 @@ export class UserService {
     
     // @Optional() private readonly password
     private readonly mailService: MailService,
+    private readonly smsService: SmsService
 
   ){}
 
@@ -85,6 +87,7 @@ export class UserService {
       console.log('error: ', error);
     }
 
+
     const respons = {
       message: "User registred",
       user: updatedUser[1][0],
@@ -130,6 +133,7 @@ export class UserService {
       {hashed_refresh_token: hashed_refresh_token},
       {where: {id: user.id}, returning: true}
     );
+
     
     res.cookie("refresh_token", tokens.refresh_token, {
       maxAge: 15*24*60*60*1000,
@@ -240,4 +244,11 @@ export class UserService {
     }
     return users;
   } 
+
+  
+
+
+  
+
+
 }
