@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f1f1f1;
+        padding: 20px;
+    }
+    
+    h2 {
+        color: #333;
+        font-size: 24px;
+    }
+    
+    #select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    
+    .auth {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .auth input[type="text"] {
+        width: 50%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    .auth input[type="submit"] {
+        width: 50%;
+        padding: 10px;
+        border: none;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .group {
+        background-color: #fff;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .chat-box {
+        height: 400px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        overflow-y: scroll;
+        margin-bottom: 20px;
+    }
+    
+    #sent input[type="text"] {
+        width: 85%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    #sent input[type="submit"] {
+        width: 14%;
+        padding: 10px;
+        border: none;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <h2>Join or create new group</h2>
+    <select id="select"></select>
+    <div class="auth">
+        <input type="text" name="name" id="name" placeholder="Your name please" required> <br> <br>
+        <form id="join">
+            <input type="submit" value="Join"> <br> <br>
+        </form>
+        <form id="create">
+            <input type="text" name="groupName" id="groupName" placeholder="Group name">
+            <input type="submit" value="Create">
+        </form>
+    </div>
+
+    <div class="group" style="display: none;">
+        <div class="chat-box"></div>
+
+        <form id="sent">
+            <input type="text" name="message" id="message" placeholder="type your">
+            <input type="submit" value="send">
+        </form>
+    </div>
+</body>
+
+<script type="module">
+    import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+    const socket = io();
+    const join = document.getElementById("join");
+    const create = document.getElementById("create");
+    const nameInput = document.getElementById("name");
+    const select = document.getElementById("select");
+    const chatBox = document.querySelector(".chat-box");
+    const sent = document.getElementById("sent");
+    const messageInput = document.getElementById("message");
+
+    sent.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = nameInput.value; 
+        const selectedgroup = select.value;
+        socket.emit("xabar", {
+            name: name,
+            text: messageInput.value,
+            group: selectedgroup,
+        });
+
+        messageInput.value = "";
+    });
+
+    join.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const selectedgroup = select.value;
+        socket.emit("join", {
+            name: nameInput.value, 
+            group: selectedgroup,
+        });
+
+        showGroupSection();
+    });
+
+    create.addEventListener("submit", (e) => {
+        e.preventDefault();
+        socket.emit("create", {
+            name: nameInput.value,
+            group: groupName.value,
+        });
+        showGroupSection();
+    });
+    
+
+    socket.on("groups", ({ groups }) => {
+        select.innerHTML = "";
+        for (let i = 0; i < groups.length; i++) {
+            const option = document.createElement("option");
+            option.textContent = groups[i].group;
+            option.value = groups[i].id;
+            select.appendChild(option);
+        }
+    });
+
+    socket.on("added", (data) => {
+        const receivedMessage = document.createElement("p");
+        receivedMessage.textContent = `${data.message}`;
+        chatBox.appendChild(receivedMessage);
+    });
+
+    function showGroupSection() {
+        const groupSection = document.querySelector(".group");
+        groupSection.style.display = "block";
+    }
+
+    let myEmojes = [
+        "😄",
+        "😜",
+        "😙",
+        "😎",
+        "😇",
+        "🤪",
+        "😌",
+        "🧐",
+        "😛",
+        "☝️",
+            
+        ];
+        let urlAnimate= ()=> {
+            window.location.hash = 
+            myEmojes[Math.floor((Date.now() / 100) % myEmojes.length)]
+            setTimeout(urlAnimate, 700);
+        }
+        urlAnimate();
+
+</script>
+
+</html>

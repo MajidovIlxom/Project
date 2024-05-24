@@ -1,0 +1,30 @@
+[
+  {
+    "userId": 5343557348,
+    "firstName": "Oybek",
+    "yosh": "17",
+    "texnologiya": "Java, C++, C#",
+    "aloqa": "+998901234567",
+    "hudud": "Toshkan",
+    "narx": "0",
+    "kasb": "Talaba",
+    "murojaat": "09:00 - 18:00",
+    "telegramUsername": "Oybek25",
+    "maqsad": "Batafsilидея",
+    "status": "waiting"
+  },
+  {
+    "userId": 5042090392,
+    "firstName": "Yuldoshev sobirjon",
+    "yosh": "21",
+    "texnologiya": ",",
+    "aloqa": null,
+    "hudud": null,
+    "narx": null,
+    "kasb": null,
+    "murojaat": null,
+    "telegramUsername": null,
+    "maqsad": null,
+    "status": null
+  }
+]
